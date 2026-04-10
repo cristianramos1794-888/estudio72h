@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio72H — Tu negocio en internet. En 72 horas.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080808;
+  --bg2:#0c0c0c;
+  --bg3:#111;
+  --cream:#e8e4db;
+  --cream2:rgba(232,228,219,0.6);
+  --cream3:rgba(232,228,219,0.3);
+  --cream4:rgba(232,228,219,0.12);
+  --cream5:rgba(232,228,219,0.06);
+  --lime:#c8f542;
+  --lime2:rgba(200,245,66,0.15);
+  --lime3:rgba(200,245,66,0.06);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Space Grotesk',system-ui,sans-serif;
+  --bebas:'Bebas Neue',Impact,sans-serif;
+  --mono:'DM Mono',monospace;
+  --content:'Plus Jakarta Sans','Space Grotesk',system-ui,sans-serif;
+}
+html{font-size:16px;}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none;}
+::selection{background:var(--lime);color:var(--bg);}
+
+/* ── CURSOR ── */
+.cursor{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:difference;}
+.cursor-dot{width:8px;height:8px;background:var(--lime);border-radius:50%;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;top:0;left:0;z-index:9998;pointer-events:none;width:48px;height:48px;border:1.5px solid rgba(200,245,66,0.4);border-radius:50%;transform:translate(-50%,-50%);transition:width .35s cubic-bezier(.25,.46,.45,.94),height .35s cubic-bezier(.25,.46,.45,.94),border-color .3s;}
+.cursor-ring.hover{width:80px;height:80px;border-color:var(--lime);}
+
+/* ── PRELOADER ── */
+.preloader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;}
+.preloader-text{font-family:var(--bebas);font-size:clamp(3rem,8vw,6rem);color:var(--lime);letter-spacing:0.08em;opacity:0;}
+.preloader-bar{width:200px;height:2px;background:var(--cream5);border-radius:2px;overflow:hidden;}
+.preloader-fill{width:0%;height:100%;background:var(--lime);border-radius:2px;}
+
+/* ── NOISE ── */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:0.03;pointer-events:none;z-index:9990;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:1.5rem 3.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--cream5);}
+.nav-logo{font-family:var(--bebas);font-size:1.6rem;color:var(--cream);text-decoration:none;letter-spacing:.08em;display:flex;align-items:center;gap:2px;}
+.nav-logo b{color:var(--lime);}
+.nav-right{display:flex;align-items:center;gap:3rem;}
+.nav-link{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream3);text-decoration:none;transition:color .3s;font-weight:400;}
+.nav-link:hover{color:var(--cream);}
+.nav-cta{background:var(--lime);color:var(--bg);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.6rem;border-radius:50px;text-decoration:none;transition:all .3s cubic-bezier(.25,.46,.45,.94);}
+.nav-cta:hover{box-shadow:0 0 30px rgba(200,245,66,.35);transform:translateY(-1px);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero-bg-lines{position:absolute;inset:0;overflow:hidden;}
+.hero-line{position:absolute;width:1px;background:linear-gradient(to bottom,transparent,var(--cream5),transparent);height:120vh;top:-10vh;}
+.hero-content{position:relative;z-index:2;width:100%;padding:0 3.5rem;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;}
+.hero-title-wrap{overflow:hidden;}
+.hero-h1{font-family:var(--bebas);font-size:clamp(6rem,16vw,16rem);line-height:.82;letter-spacing:-.03em;}
+.hero-h1 .line{display:block;overflow:hidden;}
+.hero-h1 .line-inner{display:block;transform:translateY(110%);}
+.hero-h1 .white{color:var(--cream);}
+.hero-h1 .accent{color:var(--lime);}
+.hero-h1 .italic{font-family:var(--serif);font-style:italic;color:var(--cream3);font-size:.68em;}
+.hero-right{opacity:0;transform:translateX(40px);}
+.hero-desc{font-size:.95rem;line-height:1.85;color:var(--cream2);font-weight:300;margin-bottom:2rem;}
+.hero-price{display:inline-flex;align-items:baseline;gap:.4rem;margin-bottom:.5rem;}
+.hero-price-num{font-family:var(--bebas);font-size:3.5rem;color:var(--lime);line-height:1;letter-spacing:.02em;}
+.hero-price-curr{font-family:var(--mono);font-size:.8rem;color:var(--cream3);letter-spacing:.05em;}
+.hero-price-note{font-size:.72rem;color:var(--cream3);font-weight:300;margin-bottom:2.5rem;}
+.hero-btn{display:inline-flex;align-items:center;gap:.8rem;background:var(--lime);color:var(--bg);font-weight:600;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:1.1rem 2.4rem;text-decoration:none;border-radius:4px;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.hero-btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(200,245,66,.2);}
+.hero-btn svg{width:14px;height:14px;transition:transform .3s;}
+.hero-btn:hover svg{transform:translate(3px,-3px);}
+.hero-btn-ghost{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream3);text-decoration:none;margin-left:1.5rem;transition:color .3s;}
+.hero-btn-ghost:hover{color:var(--cream);}
+
+/* ── HERO STATS ── */
+.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:3;display:flex;border-top:1px solid var(--cream5);}
+.hero-stat{flex:1;padding:1.8rem 2rem;text-align:center;border-right:1px solid var(--cream5);transition:background .3s;}
+.hero-stat:last-child{border-right:none;}
+.hero-stat:hover{background:var(--lime3);}
+.hs-num{font-family:var(--bebas);font-size:2.5rem;color:var(--lime);line-height:1;}
+.hs-label{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream3);margin-top:.2rem;}
+
+/* ── MARQUEE ── */
+.marquee{background:var(--lime);overflow:hidden;padding:.55rem 0;position:relative;z-index:5;}
+.marquee-track{display:flex;gap:1.5rem;width:max-content;animation:marquee 20s linear infinite;font-family:var(--bebas);font-size:.85rem;letter-spacing:.14em;color:var(--bg);}
+.marquee-sep{opacity:.25;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── ABOUT ── */
+.about{padding:10rem 3.5rem;position:relative;overflow:hidden;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;max-width:1300px;margin:0 auto;}
+.about-left{position:relative;}
+.about-num{font-family:var(--bebas);font-size:clamp(10rem,25vw,20rem);color:var(--cream5);line-height:.8;letter-spacing:-.04em;position:absolute;top:-3rem;left:-1rem;pointer-events:none;user-select:none;}
+.about-h2{font-family:var(--bebas);font-size:clamp(3rem,6vw,5rem);line-height:.9;letter-spacing:-.02em;position:relative;z-index:1;}
+.about-h2 em{font-family:var(--serif);font-style:italic;color:var(--cream3);}
+.about-right p{font-size:.92rem;line-height:1.9;color:var(--cream2);font-weight:300;margin-bottom:1.5rem;}
+.about-right p strong{color:var(--lime);font-weight:500;}
+
+/* ── SERVICES ── */
+.services{padding:8rem 3.5rem;background:var(--bg2);}
+.svc-header{max-width:1300px;margin:0 auto 5rem;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;}
+.svc-chip{display:inline-flex;align-items:center;gap:.5rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);border:1px solid var(--lime2);background:var(--lime3);padding:.35rem 1rem;border-radius:50px;margin-bottom:1.5rem;}
+.svc-chip-dot{width:5px;height:5px;background:var(--lime);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.svc-note{max-width:340px;font-size:.85rem;color:var(--cream3);line-height:1.8;font-weight:300;}
+
+.svc-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.svc-card{
+  padding:2.8rem;background:var(--bg3);border:1px solid var(--cream5);border-radius:8px;
+  position:relative;overflow:hidden;transition:border-color .4s,background .4s;
+}
+.svc-card:hover{border-color:var(--lime2);background:rgba(200,245,66,0.02);}
+.svc-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lime),transparent);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.16,1,.3,1);}
+.svc-card:hover::after{transform:scaleX(1);}
+.svc-card-head{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem;}
+.svc-card-idx{font-family:var(--mono);font-size:.7rem;color:var(--lime);opacity:.5;letter-spacing:.1em;}
+.svc-card-icon{width:44px;height:44px;border:1px solid var(--lime2);border-radius:6px;display:grid;place-items:center;background:var(--lime3);transition:all .3s;}
+.svc-card:hover .svc-card-icon{background:var(--lime2);border-color:rgba(200,245,66,.3);}
+.svc-card-icon svg{width:22px;height:22px;stroke:var(--lime);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.svc-card-name{font-family:var(--content);font-size:1.25rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em;}
+.svc-card-desc{font-family:var(--content);font-size:.82rem;color:var(--cream3);line-height:1.8;font-weight:300;}
+.svc-card-tags{display:flex;gap:.4rem;margin-top:1.5rem;flex-wrap:wrap;}
+.svc-card-tag{font-family:var(--mono);font-size:.58rem;border:1px solid var(--cream5);padding:.15rem .5rem;border-radius:3px;color:var(--cream4);}
+
+/* ── PRICE ── */
+.pricing{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+.pricing-left{padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem;border-right:1px solid var(--cream5);position:relative;overflow:hidden;}
+.pricing-left::before{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,245,66,.06),transparent 70%);pointer-events:none;}
+.pricing-big{font-family:var(--bebas);font-size:clamp(6rem,16vw,16rem);line-height:.8;color:var(--lime);letter-spacing:-.04em;}
+.pricing-big small{font-family:var(--mono);font-size:.1em;color:var(--cream3);display:block;margin-bottom:.5rem;letter-spacing:.12em;}
+.pricing-note{font-size:.88rem;color:var(--cream3);font-weight:300;line-height:1.7;}
+.pricing-guarantee{display:flex;align-items:flex-start;gap:1rem;border:1px solid var(--lime2);padding:1.4rem;border-radius:6px;background:var(--lime3);}
+.pg-icon{width:40px;height:40px;background:var(--lime2);display:grid;place-items:center;flex-shrink:0;border-radius:6px;}
+.pg-icon svg{width:18px;height:18px;stroke:var(--lime);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.pg-text{font-size:.8rem;line-height:1.7;color:var(--cream3);font-weight:300;}
+.pg-text strong{color:var(--cream);font-weight:500;}
+
+.pricing-right{padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center;}
+.pricing-title{font-family:var(--bebas);font-size:clamp(2rem,4vw,3.2rem);line-height:.92;letter-spacing:-.02em;margin-bottom:2.5rem;}
+.inc-row{display:flex;align-items:center;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--cream5);font-size:.85rem;color:var(--cream2);font-weight:300;transition:all .25s;}
+.inc-row:hover{color:var(--cream);padding-left:.5rem;}
+.inc-row:first-of-type{border-top:1px solid var(--cream5);}
+.inc-check{width:18px;height:18px;border:1px solid rgba(200,245,66,.25);border-radius:50%;flex-shrink:0;display:grid;place-items:center;transition:all .25s;}
+.inc-row:hover .inc-check{background:var(--lime2);border-color:var(--lime);}
+.inc-check svg{width:10px;height:10px;stroke:var(--lime);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.pricing-cta{display:flex;align-items:center;justify-content:center;gap:.8rem;background:var(--lime);color:var(--bg);font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;padding:1.1rem 2rem;text-decoration:none;margin-top:2.5rem;border-radius:4px;transition:all .3s;}
+.pricing-cta:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(200,245,66,.2);}
+.pricing-cta svg{width:14px;height:14px;}
+.pricing-limit{font-family:var(--mono);font-size:.65rem;color:var(--cream4);text-align:center;margin-top:.8rem;letter-spacing:.06em;}
+
+/* ── PROCESS ── */
+.process{padding:8rem 3.5rem;background:var(--bg2);}
+.process-inner{max-width:1300px;margin:0 auto;}
+.proc-steps{margin-top:5rem;}
+.proc-step{display:grid;grid-template-columns:80px 1fr 180px;gap:3rem;align-items:center;padding:3rem 0;border-bottom:1px solid var(--cream5);transition:padding-left .3s;}
+.proc-step:hover{padding-left:.8rem;}
+.proc-step:first-child{border-top:1px solid var(--cream5);}
+.proc-step:hover .proc-num{color:var(--lime);opacity:1;}
+.proc-num{font-family:var(--bebas);font-size:3rem;color:var(--cream);opacity:.1;transition:all .4s;letter-spacing:.02em;line-height:1;}
+.proc-title{font-family:var(--content);font-size:1.2rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em;}
+.proc-desc{font-family:var(--content);font-size:.82rem;color:var(--cream3);line-height:1.8;font-weight:300;}
+.proc-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--lime);text-align:right;opacity:.5;}
+
+/* ── TESTIMONIAL ── */
+.testimonial{padding:10rem 3.5rem;text-align:center;position:relative;overflow:hidden;}
+.testi-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.testi-bg-text{font-family:var(--bebas);font-size:clamp(10rem,30vw,30rem);color:var(--cream5);line-height:.8;white-space:nowrap;pointer-events:none;user-select:none;}
+.testi-content{position:relative;z-index:1;max-width:700px;margin:0 auto;}
+.testi-stars{color:var(--lime);font-size:1.2rem;letter-spacing:.2em;margin-bottom:1.5rem;}
+.testi-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.55;color:var(--cream2);margin-bottom:2rem;}
+.testi-author{font-family:var(--mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream4);}
+
+/* ── FAQ ── */
+.faq{padding:8rem 3.5rem;background:var(--bg);}
+.faq-inner{max-width:1000px;margin:0 auto;}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--cream5);margin-top:3.5rem;border:1px solid var(--cream5);border-radius:6px;overflow:hidden;}
+.faq-item{background:var(--bg);padding:2.5rem;transition:background .3s;}
+.faq-item:hover{background:var(--bg2);}
+.faq-q{font-family:var(--content);font-size:1.05rem;font-weight:700;margin-bottom:.6rem;letter-spacing:-.01em;}
+.faq-a{font-family:var(--content);font-size:.8rem;color:var(--cream3);line-height:1.8;font-weight:300;}
+.faq-payment{margin-top:2.5rem;border:1px solid var(--lime2);border-radius:6px;padding:2.5rem;background:var(--lime3);}
+.faq-payment .faq-q{color:var(--lime);font-size:1.15rem;}
+.faq-payment .faq-a{color:var(--cream2);}
+.faq-payment strong{color:var(--cream);font-weight:600;}
+
+/* ── FINAL CTA ── */
+.final-cta{background:var(--lime);padding:10rem 3.5rem;position:relative;overflow:hidden;}
+.final-cta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:60px 60px;}
+.final-bg{position:absolute;right:-5vw;top:50%;transform:translateY(-50%);font-family:var(--bebas);font-size:clamp(14rem,35vw,40rem);color:rgba(0,0,0,.05);line-height:.85;pointer-events:none;}
+.final-layout{display:grid;grid-template-columns:1fr auto;gap:5rem;align-items:center;position:relative;max-width:1300px;margin:0 auto;}
+.final-title{font-family:var(--bebas);font-size:clamp(4rem,10vw,10rem);line-height:.85;letter-spacing:-.03em;color:var(--bg);}
+.final-title em{font-family:var(--serif);font-style:italic;color:rgba(0,0,0,.25);}
+.final-right{display:flex;flex-direction:column;gap:1.5rem;align-items:flex-end;}
+.final-note{font-size:.88rem;color:rgba(0,0,0,.45);max-width:280px;text-align:right;line-height:1.7;font-weight:300;}
+.final-btn{display:inline-flex;align-items:center;gap:.8rem;background:var(--bg);color:var(--lime);font-family:var(--bebas);font-size:1.5rem;letter-spacing:.04em;padding:1.1rem 3rem .95rem;text-decoration:none;border-radius:4px;transition:all .3s;white-space:nowrap;}
+.final-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.final-btn svg{width:18px;height:18px;stroke:var(--lime);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.final-small{font-family:var(--mono);font-size:.65rem;color:rgba(0,0,0,.3);letter-spacing:.06em;}
+
+/* ── FOOTER ── */
+footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--cream5);font-size:.7rem;color:var(--cream4);}
+.f-logo{font-family:var(--bebas);font-size:1.2rem;color:var(--cream3);letter-spacing:.06em;}
+.f-logo b{color:var(--lime);}
+.f-links{display:flex;gap:2rem;}
+.f-links a{color:var(--cream4);text-decoration:none;font-size:.7rem;transition:color .2s;}
+.f-links a:hover{color:var(--cream);}
+
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:800;width:56px;height:56px;background:#25D366;border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;text-decoration:none;}
+.wa-float:hover{transform:scale(1.1);}
+
+/* ── REVEAL CLASSES ── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s .1s cubic-bezier(.16,1,.3,1),transform .7s .1s cubic-bezier(.16,1,.3,1);}
+.reveal-left.visible{opacity:1;transform:none;}
+.reveal-scale{opacity:0;transform:scale(.95);transition:opacity .8s .15s cubic-bezier(.16,1,.3,1),transform .8s .15s cubic-bezier(.16,1,.3,1);}
+.reveal-scale.visible{opacity:1;transform:none;}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  body{cursor:auto;}
+  .cursor,.cursor-ring{display:none!important;}
+  nav{padding:1rem 1.5rem;}
+  .nav-link{display:none;}
+  .hero-content{grid-template-columns:1fr;padding:0 1.5rem;gap:2rem;}
+  .hero-h1{font-size:clamp(4rem,14vw,8rem);}
+  .hero-stats{flex-wrap:wrap;}
+  .hero-stat{flex:1 1 45%;border-bottom:1px solid var(--cream5);}
+  .about{padding:6rem 1.5rem;}
+  .about-grid{grid-template-columns:1fr;gap:3rem;}
+  .svc-header{padding:0;}
+  .svc-grid{grid-template-columns:1fr;}
+  .pricing{grid-template-columns:1fr;}
+  .pricing-left,.pricing-right{padding:4rem 1.5rem;}
+  .pricing-left{border-right:none;border-bottom:1px solid var(--cream5);}
+  .process{padding:5rem 1.5rem;}
+  .proc-step{grid-template-columns:50px 1fr;gap:1.5rem;}
+  .proc-tag{display:none;}
+  .testimonial{padding:6rem 1.5rem;}
+  .faq{padding:5rem 1.5rem;}
+  .faq-grid{grid-template-columns:1fr;}
+  .final-cta{padding:6rem 1.5rem;}
+  .final-layout{grid-template-columns:1fr;gap:2rem;}
+  .final-right{align-items:flex-start;}
+  .final-note{text-align:left;}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader">
+  <div class="preloader-text">ESTUDIO<b style="color:var(--lime)">72H</b></div>
+  <div class="preloader-bar"><div class="preloader-fill"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor"><div class="cursor-dot"></div></div>
+<div class="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ESTUDIO<b>72H</b></a>
+  <div class="nav-right">
+    <a href="#servicios" class="nav-link">Servicios</a>
+    <a href="#precio" class="nav-link">Precios</a>
+    <a href="#proceso" class="nav-link">Proceso</a>
+    <a href="https://wa.me/573100000000?text=Hola,%20quiero%20mi%20página%20web" class="nav-cta magnetic">Cotizar →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-lines">
+    <div class="hero-line" style="left:20%"></div>
+    <div class="hero-line" style="left:40%"></div>
+    <div class="hero-line" style="left:60%"></div>
+    <div class="hero-line" style="left:80%"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-title-wrap">
+      <h1 class="hero-h1">
+        <span class="line"><span class="line-inner white">Tu negocio</span></span>
+        <span class="line"><span class="line-inner accent">en internet.</span></span>
+        <span class="line"><span class="line-inner italic">En 72 horas.</span></span>
+      </h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">Diseño profesional, dominio, hosting y tu negocio visible en Google. Todo incluido. Si no entregamos en 72 horas, te devolvemos cada peso.</p>
+      <div class="hero-price">
+        <span class="hero-price-num">$500.000</span>
+        <span class="hero-price-curr">COP</span>
+      </div>
+      <div class="hero-price-note">Pago único · Sin mensualidades · Sin letra pequeña</div>
+      <div>
+        <a href="https://wa.me/573100000000?text=Hola,%20quiero%20mi%20página%20web%20en%2072%20horas" class="hero-btn magnetic">
+          <span>Quiero mi página</span>
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12L12 2M12 2H5M12 2v7"/></svg>
+        </a>
+        <a href="#precio" class="hero-btn-ghost">Ver qué incluye ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hs-num" data-count="72" data-suffix="H">0</div><div class="hs-label">Entrega máxima</div></div>
+    <div class="hero-stat"><div class="hs-num" data-count="500" data-suffix="K">0</div><div class="hs-label">COP · Precio único</div></div>
+    <div class="hero-stat"><div class="hs-num" data-count="100" data-suffix="%">0</div><div class="hs-label">Tuya para siempre</div></div>
+    <div class="hero-stat"><div class="hs-num" data-count="0" data-prefix="$" data-suffix=" extras">$0</div><div class="hs-label">Costos ocultos</div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>DISEÑO PROFESIONAL</span><span class="marquee-sep">✦</span><span>DOMINIO INCLUIDO</span><span class="marquee-sep">✦</span><span>HOSTING 1 AÑO</span><span class="marquee-sep">✦</span><span>OPTIMIZADA PARA CELULAR</span><span class="marquee-sep">✦</span><span>APARECE EN GOOGLE</span><span class="marquee-sep">✦</span><span>WHATSAPP INTEGRADO</span><span class="marquee-sep">✦</span><span>SSL ACTIVO</span><span class="marquee-sep">✦</span><span>ENTREGA 72H</span><span class="marquee-sep">✦</span>
+    <span>DISEÑO PROFESIONAL</span><span class="marquee-sep">✦</span><span>DOMINIO INCLUIDO</span><span class="marquee-sep">✦</span><span>HOSTING 1 AÑO</span><span class="marquee-sep">✦</span><span>OPTIMIZADA PARA CELULAR</span><span class="marquee-sep">✦</span><span>APARECE EN GOOGLE</span><span class="marquee-sep">✦</span><span>WHATSAPP INTEGRADO</span><span class="marquee-sep">✦</span><span>SSL ACTIVO</span><span class="marquee-sep">✦</span><span>ENTREGA 72H</span><span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="about-num reveal">72</div>
+      <h2 class="about-h2 reveal">No somos una agencia<br>más. Somos <em>velocidad<br>con calidad.</em></h2>
+    </div>
+    <div class="about-right">
+      <p class="reveal">Mientras otros cobran millones y tardan semanas, nosotros entregamos en <strong>72 horas</strong>. Página profesional, dominio, hosting, WhatsApp, SEO — todo funcionando.</p>
+      <p class="reveal">Cada negocio en La Guajira merece verse como una marca seria en internet. Sin complicaciones. Sin tecnicismos. Solo resultados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="svc-header">
+    <div>
+      <div class="svc-chip reveal"><span class="svc-chip-dot"></span>Lo que construimos</div>
+      <h2 class="s-h2 reveal" style="font-family:var(--bebas);font-size:clamp(3rem,6vw,5.5rem);line-height:.9;letter-spacing:-.02em;">Para cada negocio,<br><em style="font-family:var(--serif);font-style:italic;color:var(--cream3);">una solución.</em></h2>
+    </div>
+    <p class="svc-note reveal">Cada página que construimos está pensada para un objetivo concreto: que quien la visita tome acción.</p>
+  </div>
+
+  <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-card-head"><div class="svc-card-idx">01</div><div class="svc-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div></div>
+        <div class="svc-card-name">Página corporativa</div>
+        <div class="svc-card-desc">Tu empresa presentada con autoridad. Servicios, equipo, ubicación y contacto. El primer impacto que convierte desconocidos en clientes que confían.</div>
+        <div class="svc-card-tags"><span class="svc-card-tag">Restaurantes</span><span class="svc-card-tag">Clínicas</span><span class="svc-card-tag">Empresas</span></div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-head"><div class="svc-card-idx">02</div><div class="svc-card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div></div>
+        <div class="svc-card-name">Landing de producto</div>
+        <div class="svc-card-desc">Una página. Un mensaje. Una acción. Diseñada para vender sin distracciones. Perfecta para lanzar algo nuevo con velocidad.</div>
+        <div class="svc-card-tags"><span class="svc-card-tag">Productos</span><span class="svc-card-tag">Eventos</span><span class="svc-card-tag">Servicios</span></div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-head"><div class="svc-card-idx">03</div><div class="svc-card-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 01-8 0"/></svg></div></div>
+        <div class="svc-card-name">Catálogo digital</div>
+        <div class="svc-card-desc">Foto, nombre, precio y botón de WhatsApp. Sin carrito complicado. Solo tu cliente viendo lo que vendes y escribiéndote directo.</div>
+        <div class="svc-card-tags"><span class="svc-card-tag">Tiendas</span><span class="svc-card-tag">Talleres</span><span class="svc-card-tag">Distribuidores</span></div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-head"><div class="svc-card-idx">04</div><div class="svc-card-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+        <div class="svc-card-name">Perfil profesional</div>
+        <div class="svc-card-desc">Tu tarjeta de presentación digital. Credibilidad instantánea: médicos, abogados, contadores, independientes.</div>
+        <div class="svc-card-tags"><span class="svc-card-tag">Médicos</span><span class="svc-card-tag">Abogados</span><span class="svc-card-tag">Freelancers</span></div>
+      </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<div class="pricing" id="precio">
+  <div class="pricing-left">
+    <div>
+      <div class="svc-chip reveal-left"><span class="svc-chip-dot"></span>Inversión única</div>
+      <div class="pricing-big reveal-left"><small>COP</small>500K</div>
+      <p class="pricing-note reveal-left">Pago único. Sin mensualidades. Sin contratos trampa.<br>Lo que acordamos es lo que pagas. Punto.</p>
+    </div>
+    <div class="pricing-guarantee reveal-left">
+      <div class="pg-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="pg-text"><strong>Garantía de 72 horas.</strong> Si no entregamos en ese plazo, te devolvemos el 100% de tu dinero. Sin preguntas.</div>
+    </div>
+  </div>
+  <div class="pricing-right">
+    <h2 class="pricing-title reveal">Todo incluido.<br>Sin letra pequeña.</h2>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Diseño personalizado con tus colores y logo</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Dominio .com por 1 año incluido</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Hosting por 1 año incluido</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Hasta 5 secciones completas</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>100% optimizada para celular</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Botón flotante de WhatsApp</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Formulario de contacto activo</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Aparece en Google (SEO básico)</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Certificado SSL activo</div>
+    <div class="inc-row"><span class="inc-check"><svg viewBox="0 0 10 10"><polyline points="2,5 4.5,7.5 8.5,2.5"/></svg></span>Es 100% tuya. Para siempre.</div>
+    <a href="https://wa.me/573100000000?text=Hola,%20quiero%20mi%20página%20web%20en%2072%20horas" class="pricing-cta reveal magnetic">
+      <span>Empezar ahora por $500.000</span>
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12L12 2M12 2H5M12 2v7"/></svg>
+    </a>
+    <p class="pricing-limit">// solo 5 cupos esta semana</p>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process" id="proceso">
+  <div class="process-inner">
+    <div class="svc-chip reveal"><span class="svc-chip-dot"></span>Cómo funciona</div>
+    <h2 class="reveal" style="font-family:var(--bebas);font-size:clamp(3rem,6vw,5.5rem);line-height:.9;letter-spacing:-.02em;">De cero a online<br><em style="font-family:var(--serif);font-style:italic;color:var(--cream3);">en 3 pasos.</em></h2>
+    <div class="proc-steps">
+      <div class="proc-step reveal">
+        <div class="proc-num">01</div>
+        <div><div class="proc-title">Nos escribes hoy</div><div class="proc-desc">Por WhatsApp. Cuéntanos qué negocio tienes. Te pedimos logo, fotos y descripción. En 30 minutos arrancamos.</div></div>
+        <div class="proc-tag">Día 1 · WhatsApp</div>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-num">02</div>
+        <div><div class="proc-title">Diseñamos y te mostramos</div><div class="proc-desc">Construimos tu página con tu identidad. Vista previa antes de publicar. Ajustes sin cobros extras.</div></div>
+        <div class="proc-tag">Día 1–2 · Preview</div>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-num">03</div>
+        <div><div class="proc-title">Tu página está online</div><div class="proc-desc">Publicamos, conectamos el dominio y te entregamos acceso completo. Tu negocio en internet.</div></div>
+        <div class="proc-tag">Máx 72H · Live</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="testi-bg"><div class="testi-bg-text">ESTUDIO72H</div></div>
+  <div class="testi-content">
+    <div class="testi-stars reveal">★★★★★</div>
+    <p class="testi-quote reveal">"Les mandé el logo por WhatsApp un lunes y el miércoles ya tenía mi página lista. Mis clientes ahora me encuentran en Google. Lo mejor que he invertido."</p>
+    <p class="testi-author reveal">— Cliente en La Guajira</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="svc-chip reveal"><span class="svc-chip-dot"></span>Preguntas frecuentes</div>
+    <h2 class="reveal" style="font-family:var(--bebas);font-size:clamp(3rem,6vw,5rem);line-height:.9;letter-spacing:-.02em;">Lo que todos<br><em style="font-family:var(--serif);font-style:italic;color:var(--cream3);">preguntan.</em></h2>
+    <div class="faq-grid reveal-scale">
+      <div class="faq-item"><div class="faq-q">¿Y si no me gusta el diseño?</div><div class="faq-a">Te mostramos vista previa antes de publicar. Ajustes sin costo extra hasta que quedes 100% satisfecho.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Necesito saber de tecnología?</div><div class="faq-a">Cero. Solo tu logo, fotos y qué quieres mostrar. Nosotros nos encargamos de todo lo técnico.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Qué pasa después del primer año?</div><div class="faq-a">Dominio y hosting se renuevan por un costo mínimo. La página es tuya para siempre.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Puedo agregar cosas después?</div><div class="faq-a">Claro. Nuevas secciones, galería, blog. Cotizamos aparte según lo que necesites.</div></div>
+      <div class="faq-item"><div class="faq-q">¿72 horas reales?</div><div class="faq-a">Sí. Desde que recibimos tu material (logo, fotos, textos), el reloj empieza. Si no cumplimos, devolvemos el 100%.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Puedo ver ejemplos?</div><div class="faq-a">Claro. Te mostramos páginas que hemos hecho para otros negocios en La Guajira antes de que decidas.</div></div>
+    </div>
+
+    <div class="faq-payment reveal">
+      <div class="faq-q">¿Cómo es el pago?</div>
+      <div class="faq-a"><strong>50% al arrancar, 50% al entregar.</strong> Pagas la mitad cuando aprobamos el proyecto. La otra mitad solo cuando veas tu página terminada y des el visto bueno. Aceptamos Nequi, Daviplata y transferencia bancaria. Sin sorpresas.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-bg">WEB</div>
+  <div class="final-layout">
+    <h2 class="final-title">Tu competencia<br>ya está en<br><em>internet.</em></h2>
+    <div class="final-right">
+      <p class="final-note">El 87% de negocios en La Guajira no tiene página web. Esa es tu ventaja. Pero la ventana se cierra.</p>
+      <a href="https://wa.me/573100000000?text=Hola,%20quiero%20mi%20página%20web%20en%2072%20horas" class="final-btn magnetic">
+        Empezar hoy — $500K
+        <svg viewBox="0 0 18 18"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
+      </a>
+      <span class="final-small">// respuesta en menos de 1 hora</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">ESTUDIO<b>72H</b></div>
+  <div class="f-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#precio">Precios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="https://wa.me/573100000000">WhatsApp</a>
+  </div>
+  <span>La Guajira · Colombia · 2026</span>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/573100000000?text=Hola,%20quiero%20mi%20página%20web" class="wa-float">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── PRELOADER
+const tl = gsap.timeline();
+tl.to('.preloader-text',{opacity:1,duration:.6,ease:'power2.out'})
+  .to('.preloader-fill',{width:'100%',duration:1.2,ease:'power2.inOut'},'<.2')
+  .to('.preloader',{yPercent:-100,duration:.8,ease:'power3.inOut',delay:.3,onComplete:()=>{document.querySelector('.preloader').style.display='none';initAnimations();}});
+
+function initAnimations(){
+  // ── HERO LINES
+  gsap.to('.hero-h1 .line-inner',{
+    y:0,duration:1.2,ease:'power4.out',stagger:.12
+  });
+  // ── HERO RIGHT
+  gsap.to('.hero-right',{opacity:1,x:0,duration:1,ease:'power3.out',delay:.6});
+  // ── HERO STATS
+  gsap.from('.hero-stat',{opacity:0,y:20,duration:.6,ease:'power2.out',stagger:.1,delay:1});
+
+  // ── COUNTERS
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target=parseFloat(el.dataset.count);
+    const suffix=el.dataset.suffix||'';
+    const prefix=el.dataset.prefix||'';
+    if(!target){el.textContent=prefix+'0'+suffix;return;}
+    gsap.to({val:0},{val:target,duration:1.8,delay:1.2,ease:'power2.out',onUpdate:function(){
+      el.textContent=prefix+Math.round(this.targets()[0].val)+suffix;
+    }});
+  });
+
+  // ── SCROLL REVEALS
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach(el=>{
+    ScrollTrigger.create({
+      trigger:el,start:'top 85%',
+      onEnter:()=>el.classList.add('visible'),
+      once:true
+    });
+  });
+
+  // ── HERO LINES PARALLAX
+  gsap.utils.toArray('.hero-line').forEach((line,i)=>{
+    gsap.to(line,{
+      y:-(50+i*30),
+      scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}
+    });
+  });
+
+  // ── TESTIMONIAL BG PARALLAX
+  gsap.to('.testi-bg-text',{
+    x:-100,
+    scrollTrigger:{trigger:'.testimonial',start:'top bottom',end:'bottom top',scrub:1}
+  });
+
+  // ── ABOUT NUM PARALLAX
+  gsap.to('.about-num',{
+    y:-60,
+    scrollTrigger:{trigger:'.about',start:'top bottom',end:'bottom top',scrub:1}
+  });
+}
+
+// ── CURSOR
+const dot=document.querySelector('.cursor');
+const ring=document.querySelector('.cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+if(window.matchMedia('(pointer:fine)').matches){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px,${my}px)`;});
+  (function raf(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(raf);})();
+  document.querySelectorAll('a,button,.magnetic').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+  });
+}
+
+// ── MAGNETIC EFFECT
+document.querySelectorAll('.magnetic').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=e.clientX-r.left-r.width/2;
+    const y=e.clientY-r.top-r.height/2;
+    gsap.to(btn,{x:x*.25,y:y*.25,duration:.3,ease:'power2.out'});
+  });
+  btn.addEventListener('mouseleave',()=>{
+    gsap.to(btn,{x:0,y:0,duration:.5,ease:'elastic.out(1,.5)'});
+  });
+});
+
+// ── SMOOTH ANCHORS
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
