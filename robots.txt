@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://estudio72h.com/sitemap.xml
