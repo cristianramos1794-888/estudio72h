@@ -1321,7 +1321,6 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
 
   function showPopupNow() {
     if (popupShown) return;
-    if (sessionStorage.getItem('popup-closed') === 'true') return;
     popupShown = true;
     var overlay = document.getElementById('popup-overlay');
     if (!overlay) return;
@@ -1335,7 +1334,6 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
     setTimeout(function() {
       overlay.classList.add('hidden');
       overlay.classList.remove('closing');
-      sessionStorage.setItem('popup-closed', 'true');
     }, 300);
   }
 
@@ -1352,7 +1350,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closePopup();
     });
-    setTimeout(showPopupNow, 30000);
+    setTimeout(showPopupNow, 1000);
   })();
 
 })();
