@@ -748,10 +748,10 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
   </div>
 
   <div class="hero-stats" aria-label="Estadísticas clave">
-    <div class="hero-stat"><div class="hs-num" data-count="72" data-suffix="H">0</div><div class="hs-label">Entrega máxima</div></div>
-    <div class="hero-stat"><div class="hs-num" data-count="500" data-suffix="K">0</div><div class="hs-label">COP · Precio único</div></div>
-    <div class="hero-stat"><div class="hs-num" data-count="100" data-suffix="%">0</div><div class="hs-label">Tuya para siempre</div></div>
-    <div class="hero-stat"><div class="hs-num" data-count="0" data-prefix="$" data-suffix=" extras">$0</div><div class="hs-label">Costos ocultos</div></div>
+    <div class="hero-stat"><div class="hs-num" data-count="72" data-suffix="H">72H</div><div class="hs-label">Entrega máxima</div></div>
+    <div class="hero-stat"><div class="hs-num" data-count="500" data-suffix="K">500K</div><div class="hs-label">COP · Precio único</div></div>
+    <div class="hero-stat"><div class="hs-num" data-count="100" data-suffix="%">100%</div><div class="hs-label">Tuya para siempre</div></div>
+    <div class="hero-stat"><div class="hs-num" data-count="0" data-prefix="$" data-suffix=" EXTRAS">$0 EXTRAS</div><div class="hs-label">Costos ocultos</div></div>
   </div>
 </section>
 
@@ -914,7 +914,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
       <div class="faq-item"><div class="faq-q">¿Qué pasa después del primer año?</div><div class="faq-a">Dominio y hosting se renuevan por un costo mínimo. La página es tuya para siempre.</div></div>
       <div class="faq-item"><div class="faq-q">¿Puedo agregar cosas después?</div><div class="faq-a">Claro. Nuevas secciones, galería, blog. Cotizamos aparte según lo que necesites.</div></div>
       <div class="faq-item"><div class="faq-q">¿72 horas reales?</div><div class="faq-a">Sí. Desde que recibimos tu material (logo, fotos, textos), el reloj empieza. Si no cumplimos, devolvemos el 100%.</div></div>
-      <div class="faq-item"><div class="faq-q">¿Puedo ver ejemplos?</div><div class="faq-a">Claro. Te mostramos páginas que hemos hecho para negocios en Colombia antes de que decidas.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Puedo ver ejemplos?</div><div class="faq-a">Sí. Te mostramos un preview gratuito de cómo se vería TU página antes de que pagues un peso. Solo mándanos tu logo por WhatsApp.</div></div>
     </div>
     <div class="faq-payment reveal">
       <div class="faq-q">¿Cómo es el pago?</div>
@@ -1244,8 +1244,9 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
       var target = parseFloat(el.dataset.count);
       var suffix = el.dataset.suffix || '';
       var prefix = el.dataset.prefix || '';
-      if (!target) { el.textContent = prefix + '0' + suffix; return; }
+      if (!target) { return; } // static HTML fallback already correct
       gsap.to({val:0}, {val:target, duration:1.8, delay:1.2, ease:'power2.out',
+        onStart: function() { el.textContent = prefix + '0' + suffix; },
         onUpdate: function() {
           el.textContent = prefix + Math.round(this.targets()[0].val) + suffix;
         }
