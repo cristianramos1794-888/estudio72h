@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Studio72H — Tu negocio en internet. En 72 horas.</title>
 
 <!-- SEO -->
@@ -121,13 +121,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:1.5rem 3.5rem;displa
 .nav-cta:hover,.nav-cta:focus{box-shadow:0 0 35px rgba(200,245,66,0.5);transform:translateY(-1px);}
 
 /* ── HERO ── */
-.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:7rem;}
 .hero::after{content:'';position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(200,245,66,0.06),transparent 70%);pointer-events:none;z-index:0;}
 .hero-bg-lines{position:absolute;inset:0;overflow:hidden;}
 .hero-line{position:absolute;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,228,219,0.08),transparent);height:120vh;top:-10vh;}
 .hero-content{position:relative;z-index:2;width:100%;padding:0 3.5rem;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;}
 .hero-title-wrap{overflow:hidden;}
-.hero-h1{font-family:var(--bebas);font-size:clamp(6rem,16vw,16rem);line-height:.82;letter-spacing:-.03em;}
+.hero-h1{font-family:var(--bebas);font-size:6rem;font-size:clamp(6rem,16vw,16rem);line-height:.82;letter-spacing:-.03em;}
 .hero-h1 .line{display:block;overflow:hidden;}
 .hero-h1 .line-inner{display:block;transform:translateY(110%);}
 .hero-h1 .white{color:var(--cream);}
@@ -352,7 +352,8 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
 
 @media(max-width:900px){
   /* GLOBAL padding */
-  .about,.services,.portfolio,.process,.faq{padding:5rem 1.5rem;}
+  .about,.services,.portfolio,.process,.faq,.testimonial,.final-cta{padding:5rem 1.5rem;}
+  .about,.services,.portfolio,.process,.faq,.testimonial,.final-cta{padding-left:1.5rem;padding-right:1.5rem;}
 
   /* NAV */
   nav{padding:.8rem 1.2rem;}
@@ -360,15 +361,16 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
   .nav-burger{display:flex;}
 
   /* HERO */
-  .hero-content{grid-template-columns:1fr;padding:0 1.5rem;gap:2rem;}
-  .hero-h1{font-size:clamp(3.5rem,14vw,6rem);}
-  .hero-right{padding-top:1.5rem;transform:none;}
-  .hero-price-num{font-size:2.8rem;}
-  .hero-stats{display:grid;grid-template-columns:1fr 1fr;}
-  .hero-stat{border-bottom:1px solid var(--cream5);}
+  .hero{min-height:auto;padding-top:5rem;padding-bottom:9rem;}
+  .hero-content{grid-template-columns:1fr!important;padding:0 1.5rem;gap:2rem;}
+  .hero-h1{font-size:4rem;font-size:clamp(3rem,12vw,5rem)!important;line-height:.88;}
+  .hero-right{position:relative;z-index:2;padding-top:1.5rem;padding-bottom:2rem;transform:none;}
+  .hero-stats{position:relative;z-index:1;display:grid!important;grid-template-columns:1fr 1fr;flex-wrap:unset;}
+  .hero-stat{flex:none;width:100%;border-bottom:1px solid var(--cream5);}
+  .hero-price-num{font-size:2.5rem;}
   .hero-cta-row{display:flex;flex-direction:column;gap:.8rem;}
-  .hero-btn{width:100%;justify-content:center;min-height:48px;}
-  .hero-btn-ghost{display:flex;width:100%;justify-content:center;margin-left:0;min-height:48px;border:1px solid var(--cream5);border-radius:4px;padding:.8rem;}
+  .hero-btn{display:flex;width:100%;justify-content:center;min-height:48px;}
+  .hero-btn-ghost{display:flex;width:100%;justify-content:center;margin-left:0;margin-top:0;min-height:48px;border:1px solid var(--cream5);border-radius:4px;padding:.8rem;}
 
   /* ABOUT */
   .about-grid{grid-template-columns:1fr;gap:3rem;}
@@ -396,7 +398,6 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
   .port-grid{grid-template-columns:1fr;}
 
   /* TESTIMONIAL */
-  .testimonial{padding:5rem 1.5rem;}
   .testi-bg-text{font-size:6rem;}
   .testi-quote{font-size:1.1rem;}
 
@@ -405,7 +406,6 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
   .faq-item{padding:1.8rem;}
 
   /* FINAL CTA */
-  .final-cta{padding:5rem 1.5rem;}
   .final-layout{grid-template-columns:1fr;gap:2rem;}
   .final-title{font-size:clamp(3rem,12vw,5rem);}
   .final-right{align-items:flex-start;}
@@ -430,10 +430,12 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
 
 /* ── FINE TUNE 600px ── */
 @media(max-width:600px){
-  .hero-h1{font-size:clamp(3rem,13vw,4.5rem);}
-  .pricing-big{font-size:clamp(4rem,18vw,6rem);}
-  .final-title{font-size:clamp(2.5rem,11vw,4rem);}
+  .hero-h1{font-size:3.2rem;font-size:clamp(2.8rem,11vw,4rem)!important;}
+  .pricing-big{font-size:4rem;font-size:clamp(4rem,18vw,6rem);}
+  .final-title{font-size:2.5rem;font-size:clamp(2.5rem,11vw,4rem);}
   .mobile-nav-link{font-size:2rem;}
+  .hero{padding-bottom:8rem;}
+  .hero-stats{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
