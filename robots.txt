@@ -1,9 +1,10 @@
 User-agent: *
 Allow: /
-Sitemap: https://studio72h.com/sitemap.xml
 
 User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
 Allow: /
+
+Sitemap: https://studio72h.com/sitemap.xml
