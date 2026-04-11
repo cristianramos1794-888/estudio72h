@@ -1208,7 +1208,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
         el.style.transform = 'none';
       });
       document.querySelector('.hero-right').style.cssText = 'opacity:1;transform:none';
-      showPopup(2000);
+      showPopup(1000);
       return;
     }
 
@@ -1218,7 +1218,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
     if (prefersReducedMotion) {
       document.querySelector('.preloader').style.display = 'none';
       initAnimations();
-      showPopup(2000);
+      showPopup(1000);
       return;
     }
 
@@ -1229,7 +1229,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
         onComplete: function() {
           document.querySelector('.preloader').style.display = 'none';
           initAnimations();
-          showPopup(2000);
+          showPopup(1000);
         }
       });
   });
@@ -1330,12 +1330,10 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
 
   /* ── POPUP ── */
   function showPopup(delay) {
-    if (sessionStorage.getItem('popup-shown') === 'true') return;
     var overlay = document.getElementById('popup-overlay');
     if (!overlay) return;
     setTimeout(function() {
       overlay.classList.remove('hidden');
-      sessionStorage.setItem('popup-shown', 'true');
     }, delay || 0);
   }
 
