@@ -198,18 +198,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:1.5rem 3.5rem;displa
 .svc-card-tags{display:flex;gap:.4rem;margin-top:1.5rem;flex-wrap:wrap;}
 .svc-card-tag{font-size:.58rem;border:1px solid var(--cream5);padding:.15rem .5rem;border-radius:3px;color:var(--cream4);}
 
-/* ── PORTFOLIO ── */
-.portfolio{padding:8rem 3.5rem;background:var(--bg);}
-.portfolio-inner{max-width:1300px;margin:0 auto;}
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;}
-.port-card{border:1px solid var(--cream5);border-radius:8px;overflow:hidden;background:var(--bg3);transition:border-color .4s,transform .3s;}
-.port-card:hover{border-color:var(--lime2);transform:translateY(-4px);}
-.port-thumb{aspect-ratio:16/10;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--cream5);position:relative;overflow:hidden;}
-.port-thumb-label{font-family:var(--bebas);font-size:3rem;color:var(--cream5);letter-spacing:.08em;}
-.port-thumb-dot{position:absolute;bottom:1rem;right:1rem;width:8px;height:8px;background:var(--lime);border-radius:50%;animation:pulse 2s infinite;}
-.port-info{padding:1.5rem;}
-.port-name{font-weight:700;font-size:.95rem;margin-bottom:.3rem;letter-spacing:-.01em;}
-.port-type{font-size:.72rem;color:var(--cream3);letter-spacing:.08em;text-transform:uppercase;}
 
 /* ── PRICE ── */
 .pricing{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
@@ -352,8 +340,8 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
 
 @media(max-width:900px){
   /* GLOBAL padding */
-  .about,.services,.portfolio,.process,.faq,.testimonial,.final-cta{padding:5rem 1.5rem;}
-  .about,.services,.portfolio,.process,.faq,.testimonial,.final-cta{padding-left:1.5rem;padding-right:1.5rem;}
+  .about,.services,.process,.faq,.testimonial,.final-cta{padding:5rem 1.5rem;}
+  .about,.services,.process,.faq,.testimonial,.final-cta{padding-left:1.5rem;padding-right:1.5rem;}
 
   /* NAV */
   nav{padding:.8rem 1.2rem;}
@@ -393,9 +381,6 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
   /* PROCESS */
   .proc-step{grid-template-columns:50px 1fr;gap:1rem;}
   .proc-tag{display:none;}
-
-  /* PORTFOLIO */
-  .port-grid{grid-template-columns:1fr;}
 
   /* TESTIMONIAL */
   .testi-bg-text{font-size:6rem;}
@@ -474,7 +459,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
     <a href="#servicios" class="mobile-nav-link">Servicios</a>
     <a href="#precio" class="mobile-nav-link">Precios</a>
     <a href="#proceso" class="mobile-nav-link">Proceso</a>
-    <a href="#portafolio" class="mobile-nav-link">Portafolio</a>
+
   </nav>
   <div class="mobile-cta-wrap">
     <a href="https://wa.me/573205415236?text=Hola,%20quiero%20mi%20página%20web%20en%2072%20horas" class="mobile-cta" aria-label="Empezar por WhatsApp">
@@ -600,45 +585,6 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="portfolio" id="portafolio" aria-labelledby="portfolio-heading">
-  <div class="portfolio-inner">
-    <div class="svc-chip reveal"><span class="svc-chip-dot" aria-hidden="true"></span>Ejemplos de trabajo</div>
-    <h2 id="portfolio-heading" class="reveal" style="font-family:var(--bebas);font-size:clamp(3rem,6vw,5.5rem);line-height:.9;letter-spacing:-.02em;">Páginas que<br><em style="font-family:var(--serif);font-style:italic;color:var(--cream3);">generan clientes.</em></h2>
-    <div class="port-grid">
-      <article class="port-card reveal">
-        <div class="port-thumb" aria-hidden="true">
-          <div class="port-thumb-label">01</div>
-          <div class="port-thumb-dot"></div>
-        </div>
-        <div class="port-info">
-          <div class="port-name">Restaurante La Mesa</div>
-          <div class="port-type">Página corporativa · Bogotá</div>
-        </div>
-      </article>
-      <article class="port-card reveal">
-        <div class="port-thumb" aria-hidden="true">
-          <div class="port-thumb-label">02</div>
-          <div class="port-thumb-dot"></div>
-        </div>
-        <div class="port-info">
-          <div class="port-name">Dr. Herrera — Odontología</div>
-          <div class="port-type">Perfil profesional · Medellín</div>
-        </div>
-      </article>
-      <article class="port-card reveal">
-        <div class="port-thumb" aria-hidden="true">
-          <div class="port-thumb-label">03</div>
-          <div class="port-thumb-dot"></div>
-        </div>
-        <div class="port-info">
-          <div class="port-name">Ferretería El Constructor</div>
-          <div class="port-type">Catálogo digital · Cali</div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 
 <!-- PRICING -->
 <div class="pricing" id="precio">
