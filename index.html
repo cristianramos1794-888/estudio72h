@@ -961,7 +961,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
 </a>
 
 <!-- POPUP: LA GUAJIRA LAUNCH -->
-<div class="popup-overlay hidden" id="popup-overlay" role="dialog" aria-modal="true" aria-label="Oferta especial en La Guajira">
+<div class="popup-overlay hidden" id="popup-overlay" role="dialog" aria-modal="true" aria-label="Oferta especial en La Guajira" style="display:none">
   <div class="popup" id="popup">
 
     <!-- SCENE -->
@@ -1353,7 +1353,7 @@ footer{background:var(--bg);padding:2.5rem 3.5rem;display:flex;justify-content:s
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closePopup();
     });
-    setTimeout(showPopupNow, 3000);
+    // setTimeout(showPopupNow, 3000); // popup disabled temporarily
   })();
 
 })();
