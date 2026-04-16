@@ -12,8 +12,12 @@
       "source": "/404.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/404",
+      "destination": "/",
+      "permanent": true
     }
   ],
-  "cleanUrls": true,
   "trailingSlash": false
 }
