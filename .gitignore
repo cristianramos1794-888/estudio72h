@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Claude Code config local (skills, cache)
+.claude/
+
+# Backups manuales
+*.backup
+*.backup.*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python cache (si se usan scripts auxiliares)
+__pycache__/
+*.pyc
+*.pyo
+
+# Node (por si se agrega algún dev tool en el futuro)
+node_modules/
+npm-debug.log*
+
+# Logs y temporales
+*.log
+tmp/
+temp/
+
+# Playwright cache (si se usa para testing)
+.playwright-mcp/
+playwright-report/
+test-results/

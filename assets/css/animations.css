@@ -1,0 +1,32 @@
+/* ═══════════════════════════════════════════════════
+   animations.css — Studio72H
+   Todos los @keyframes del sitio.
+   Las reglas que USAN estos keyframes están en
+   base.css, layout.css o components.css.
+═══════════════════════════════════════════════════ */
+
+/* Shimmer del acento del hero (h1 .accent) */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Marquee horizontal infinito */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Pulse genérico (usado en dots de chips y otros) */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .25; }
+}
+
+/* WhatsApp float pulse ring */
+@keyframes wa-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70%  { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}

@@ -1,0 +1,169 @@
+/* ═══════════════════════════════════════════════════
+   base.css — Studio72H
+   Variables globales, reset, tipografía base, elementos
+   transversales (cursor, preloader, skip-link, noise)
+═══════════════════════════════════════════════════ */
+
+/* ── RESET ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── TOKENS (variables CSS globales) ── */
+:root {
+  /* Backgrounds */
+  --bg: #080808;
+  --bg2: #0c0c0c;
+  --bg3: #111;
+
+  /* Textos */
+  --cream: #e8e4db;
+  --cream2: rgba(232, 228, 219, 0.75);
+  --cream3: rgba(232, 228, 219, 0.45);
+  --cream4: rgba(232, 228, 219, 0.18);
+  --cream5: rgba(232, 228, 219, 0.06);
+
+  /* Acento (lime) */
+  --lime: #c8f542;
+  --lime2: rgba(200, 245, 66, 0.15);
+  --lime3: rgba(200, 245, 66, 0.06);
+  --lime-glow: rgba(200, 245, 66, 0.25);
+
+  /* Tipografías */
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Space Grotesk', system-ui, sans-serif;
+  --bebas: 'Bebas Neue', Impact, sans-serif;
+}
+
+/* ── HTML & BODY BASE ── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--bg);
+}
+
+/* ── SKIP TO CONTENT (accesibilidad) ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--lime);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: .8rem;
+  letter-spacing: .08em;
+  padding: .6rem 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  z-index: 99999;
+  transition: top .2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ── CURSOR CUSTOM ── */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--lime);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(200, 245, 66, 0.4);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  pointer-events: none;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgba(200, 245, 66, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width .35s cubic-bezier(.25, .46, .45, .94),
+              height .35s cubic-bezier(.25, .46, .45, .94),
+              border-color .3s;
+}
+
+.cursor-ring.hover {
+  width: 80px;
+  height: 80px;
+  border-color: var(--lime);
+}
+
+/* ── PRELOADER (max 1s) ── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.preloader-text {
+  font-family: var(--bebas);
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--lime);
+  letter-spacing: 0.08em;
+  opacity: 0;
+}
+
+.preloader-bar {
+  width: 200px;
+  height: 2px;
+  background: var(--cream5);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.preloader-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--lime);
+  border-radius: 2px;
+}
+
+/* ── NOISE TEXTURE (overlay global) ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 8000;
+}
